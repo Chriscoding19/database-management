@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Database Management System Report</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', system-ui, sans-serif; background: #0d1117; color: #c9d1d9; line-height: 1.6; }
+  .container { max-width: 1200px; margin: 0 auto; padding: 2rem; }
+  h1 { color: #58a6ff; font-size: 2rem; margin-bottom: 0.3rem; }
+  h2 { color: #79c0ff; font-size: 1.3rem; margin: 2rem 0 1rem; border-bottom: 1px solid #30363d; padding-bottom: 0.5rem; }
+  h3 { color: #79c0ff; }
+  .meta { color: #8b949e; margin-bottom: 2rem; font-size: 0.9rem; }
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 2rem; }
+  .card { background: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: 1.5rem; }
+  .card h3 { color: #79c0ff; margin-bottom: 1rem; font-size: 1rem; text-transform: uppercase; letter-spacing: 0.05em; }
+  table { width: 100%; border-collapse: collapse; background: #161b22; border-radius: 8px; overflow: hidden; border: 1px solid #30363d; margin-bottom: 1rem; }
+  th { background: #21262d; color: #8b949e; text-align: left; padding: 0.6rem 1rem; font-size: 0.8rem; text-transform: uppercase; }
+  td { padding: 0.6rem 1rem; border-top: 1px solid #21262d; font-size: 0.85rem; }
+  tr:hover td { background: #1c2128; }
+  .summary-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(140px,1fr)); gap: 1rem; margin-bottom: 2rem; }
+  .summary-card { background: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: 1.2rem; text-align: center; }
+  .summary-card .number { font-size: 2rem; font-weight: bold; }
+  .summary-card .label  { font-size: 0.75rem; color: #8b949e; text-transform: uppercase; }
+  .badge { display: inline-block; padding: 0.2rem 0.5rem; border-radius: 4px; font-size: 0.75rem; background: #0d2a14; color: #3fb950; font-weight: bold; }
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>🗄️ Database Management System</h1>
+  <div class="meta">
+    Generated: 2026-02-19 17:35:13 &nbsp;|&nbsp;
+    Engine: SQLite with WAL mode &nbsp;|&nbsp;
+    Schema: E-Commerce relational database
+  </div>
+
+  <div class="summary-grid">
+    <div class="summary-card"><div class="number" style="color:#58a6ff">2,323</div><div class="label">Total Records</div></div>
+    <div class="summary-card"><div class="number" style="color:#3fb950">9</div><div class="label">Tables</div></div>
+    <div class="summary-card"><div class="number" style="color:#d29922">13</div><div class="label">Indexes</div></div>
+    <div class="summary-card"><div class="number" style="color:#bc8cff">18</div><div class="label">Queries</div></div>
+  </div>
+
+  <div class="grid-2">
+    <div class="card">
+      <h3>Table Statistics</h3>
+      <table><thead><tr><th>Table</th><th>Rows</th></tr></thead>
+      <tbody><tr><td>customers</td><td style='text-align:right'>200</td></tr><tr><td>departments</td><td style='text-align:right'>6</td></tr><tr><td>employees</td><td style='text-align:right'>50</td></tr><tr><td>inventory</td><td style='text-align:right'>25</td></tr><tr><td>order_items</td><td style='text-align:right'>1,501</td></tr><tr><td>orders</td><td style='text-align:right'>500</td></tr><tr><td>products</td><td style='text-align:right'>25</td></tr><tr><td>sqlite_sequence</td><td style='text-align:right'>8</td></tr><tr><td>suppliers</td><td style='text-align:right'>8</td></tr></tbody></table>
+    </div>
+    <div class="card">
+      <h3>Index Inventory (13 indexes)</h3>
+      <table><thead><tr><th>Index Name</th><th>Table</th></tr></thead>
+      <tbody><tr><td style='font-family:monospace'>idx_orders_customer</td><td>orders</td></tr><tr><td style='font-family:monospace'>idx_orders_status</td><td>orders</td></tr><tr><td style='font-family:monospace'>idx_orders_date</td><td>orders</td></tr><tr><td style='font-family:monospace'>idx_order_items_order</td><td>order_items</td></tr><tr><td style='font-family:monospace'>idx_order_items_product</td><td>order_items</td></tr><tr><td style='font-family:monospace'>idx_products_category</td><td>products</td></tr><tr><td style='font-family:monospace'>idx_products_supplier</td><td>products</td></tr><tr><td style='font-family:monospace'>idx_employees_dept</td><td>employees</td></tr><tr><td style='font-family:monospace'>idx_customers_country</td><td>customers</td></tr><tr><td style='font-family:monospace'>idx_customers_city</td><td>customers</td></tr><tr><td style='font-family:monospace'>idx_orders_customer_date</td><td>orders</td></tr><tr><td style='font-family:monospace'>idx_active_products</td><td>products</td></tr><tr><td style='font-family:monospace'>idx_inventory_reorder</td><td>inventory</td></tr></tbody></table>
+    </div>
+  </div>
+
+  <h2>Query Benchmark Results</h2>
+  <table>
+    <thead><tr><th>Query</th><th>Rows Returned</th><th>Avg Time</th></tr></thead>
+    <tbody><tr><td>Revenue by Category</td><td style='text-align:right'>8</td><td style='text-align:right'>3.618 ms</td></tr><tr><td>Top Customers</td><td style='text-align:right'>20</td><td style='text-align:right'>3.131 ms</td></tr><tr><td>CTE: Customer Segments</td><td style='text-align:right'>5</td><td style='text-align:right'>3.029 ms</td></tr><tr><td>Window: Employee Salary Rank</td><td style='text-align:right'>50</td><td style='text-align:right'>2.962 ms</td></tr><tr><td>CTE: Product Rank by Category</td><td style='text-align:right'>21</td><td style='text-align:right'>3.732 ms</td></tr><tr><td>Subquery: Above Avg Products</td><td style='text-align:right'>10</td><td style='text-align:right'>2.352 ms</td></tr></tbody>
+  </table>
+
+  <h2>Query Results</h2>
+  
+        <h3 style="color:#79c0ff;margin:1.5rem 0 0.5rem">All Customers</h3>
+        <div style="overflow-x:auto">
+        <table>
+          <thead><tr><th>customer_id</th><th>name</th><th>email</th><th>city</th><th>country</th><th>loyalty_points</th></tr></thead>
+          <tbody><tr><td>21</td><td>Anthony Anderson</td><td>anthony.anderson20@email.com</td><td>Philadelphia</td><td>DE</td><td>1864</td></tr><tr><td>63</td><td>Anthony Anderson</td><td>anthony.anderson62@email.com</td><td>Chicago</td><td>US</td><td>3227</td></tr><tr><td>37</td><td>Joseph Anderson</td><td>joseph.anderson36@email.com</td><td>Austin</td><td>AU</td><td>4187</td></tr><tr><td>48</td><td>Margaret Anderson</td><td>margaret.anderson47@email.com</td><td>Austin</td><td>FR</td><td>3625</td></tr><tr><td>180</td><td>Margaret Anderson</td><td>margaret.anderson179@email.com</td><td>New York</td><td>FR</td><td>1076</td></tr><tr><td>86</td><td>Mark Anderson</td><td>mark.anderson85@email.com</td><td>Houston</td><td>BR</td><td>4668</td></tr><tr><td>169</td><td>Mark Anderson</td><td>mark.anderson168@email.com</td><td>Phoenix</td><td>CA</td><td>605</td></tr><tr><td>133</td><td>Mary Anderson</td><td>mary.anderson132@email.com</td><td>Los Angeles</td><td>FR</td><td>2067</td></tr><tr><td>73</td><td>Michael Anderson</td><td>michael.anderson72@email.com</td><td>Jacksonville</td><td>DE</td><td>3021</td></tr><tr><td>111</td><td>Richard Anderson</td><td>richard.anderson110@email.com</td><td>San Diego</td><td>DE</td><td>4821</td></tr><tr><td>155</td><td>Sandra Anderson</td><td>sandra.anderson154@email.com</td><td>Los Angeles</td><td>BR</td><td>125</td></tr><tr><td>75</td><td>Barbara Brown</td><td>barbara.brown74@email.com</td><td>San Jose</td><td>US</td><td>2555</td></tr><tr><td>113</td><td>Betty Brown</td><td>betty.brown112@email.com</td><td>Houston</td><td>AU</td><td>2167</td></tr><tr><td>134</td><td>David Brown</td><td>david.brown133@email.com</td><td>San Antonio</td><td>US</td><td>4444</td></tr><tr><td>12</td><td>James Brown</td><td>james.brown11@email.com</td><td>Los Angeles</td><td>CA</td><td>4469</td></tr><tr><td>141</td><td>Linda Brown</td><td>linda.brown140@email.com</td><td>San Diego</td><td>UK</td><td>1261</td></tr><tr><td>45</td><td>Mark Brown</td><td>mark.brown44@email.com</td><td>San Antonio</td><td>AU</td><td>1440</td></tr><tr><td>31</td><td>Nancy Brown</td><td>nancy.brown30@email.com</td><td>Jacksonville</td><td>DE</td><td>4154</td></tr><tr><td>131</td><td>Nancy Brown</td><td>nancy.brown130@email.com</td><td>Chicago</td><td>FR</td><td>3372</td></tr><tr><td>40</td><td>Anthony Davis</td><td>anthony.davis39@email.com</td><td>Austin</td><td>DE</td><td>1840</td></tr></tbody>
+        </table>
+        </div>
+        <p style='color:#8b949e;font-size:0.8rem'>Showing first 20 rows</p>
+        
+        <h3 style="color:#79c0ff;margin:1.5rem 0 0.5rem">Active Products</h3>
+        <div style="overflow-x:auto">
+        <table>
+          <thead><tr><th>product_id</th><th>name</th><th>category</th><th>price</th><th>cost</th><th>margin</th></tr></thead>
+          <tbody><tr><td>25</td><td>Car Phone Mount Magnetic</td><td>Automotive</td><td>19.99</td><td>5.0</td><td>14.99</td></tr><tr><td>11</td><td>Data Science Handbook</td><td>Books</td><td>44.99</td><td>9.0</td><td>35.99</td></tr><tr><td>10</td><td>Python Programming Guide</td><td>Books</td><td>39.99</td><td>8.0</td><td>31.99</td></tr><tr><td>12</td><td>Clean Code</td><td>Books</td><td>34.99</td><td>7.0</td><td>27.99</td></tr><tr><td>13</td><td>The Art of War</td><td>Books</td><td>12.99</td><td>2.0</td><td>10.99</td></tr><tr><td>16</td><td>Winter Parka Jacket</td><td>Clothing</td><td>129.99</td><td>50.0</td><td>79.99</td></tr><tr><td>15</td><td>Slim Fit Chino Pants</td><td>Clothing</td><td>49.99</td><td>16.0</td><td>33.99</td></tr><tr><td>14</td><td>Cotton Crew Neck T-Shirt</td><td>Clothing</td><td>24.99</td><td>7.0</td><td>17.99</td></tr><tr><td>2</td><td>4K Ultra HD Smart TV 55"</td><td>Electronics</td><td>499.99</td><td>280.0</td><td>219.99</td></tr><tr><td>5</td><td>Noise Cancelling Earbuds</td><td>Electronics</td><td>129.99</td><td>50.0</td><td>79.99</td></tr><tr><td>1</td><td>Wireless Bluetooth Headphones</td><td>Electronics</td><td>89.99</td><td>35.0</td><td>54.99</td></tr><tr><td>3</td><td>Mechanical Gaming Keyboard</td><td>Electronics</td><td>69.99</td><td>28.0</td><td>41.99</td></tr><tr><td>4</td><td>USB-C Charging Hub 7-Port</td><td>Electronics</td><td>45.99</td><td>15.0</td><td>30.99</td></tr><tr><td>22</td><td>Natural Face Moisturiser</td><td>Health & Beauty</td><td>28.99</td><td>9.0</td><td>19.99</td></tr><tr><td>20</td><td>Multivitamin Daily Pack</td><td>Health & Beauty</td><td>19.99</td><td>5.0</td><td>14.99</td></tr><tr><td>21</td><td>Vitamin D3 Supplements</td><td>Health & Beauty</td><td>14.99</td><td>3.5</td><td>11.49</td></tr><tr><td>17</td><td>Ceramic Coffee Mug Set</td><td>Home & Garden</td><td>29.99</td><td>9.0</td><td>20.99</td></tr><tr><td>18</td><td>Stainless Steel Water Bottle</td><td>Home & Garden</td><td>22.99</td><td>7.0</td><td>15.99</td></tr><tr><td>19</td><td>Bamboo Cutting Board</td><td>Home & Garden</td><td>18.99</td><td>5.0</td><td>13.99</td></tr><tr><td>8</td><td>Adjustable Dumbbell Set</td><td>Sports</td><td>149.99</td><td>65.0</td><td>84.99</td></tr></tbody>
+        </table>
+        </div>
+        <p style='color:#8b949e;font-size:0.8rem'>Showing first 20 rows</p>
+        
+        <h3 style="color:#79c0ff;margin:1.5rem 0 0.5rem">Low Stock Alert</h3>
+        <div style="overflow-x:auto">
+        <table>
+          <thead><tr><th>product_id</th><th>name</th><th>category</th><th>sku</th><th>current_stock</th><th>reorder_level</th><th>reorder_qty</th><th>warehouse</th><th>supplier_name</th><th>supplier_email</th></tr></thead>
+          <tbody><tr><td>8</td><td>Adjustable Dumbbell Set</td><td>Sports</td><td>SPRT-1007</td><td>0</td><td>17</td><td>53</td><td>MAIN</td><td>HealthFirst</td><td>supply@healthfirst.com</td></tr><tr><td>4</td><td>USB-C Charging Hub 7-Port</td><td>Electronics</td><td>ELEC-1003</td><td>3</td><td>7</td><td>50</td><td>MAIN</td><td>HealthFirst</td><td>supply@healthfirst.com</td></tr><tr><td>2</td><td>4K Ultra HD Smart TV 55"</td><td>Electronics</td><td>ELEC-1001</td><td>19</td><td>19</td><td>90</td><td>MAIN</td><td>HomeGoods Co</td><td>trade@homegoods.com</td></tr></tbody>
+        </table>
+        </div>
+        
+        
+        <h3 style="color:#79c0ff;margin:1.5rem 0 0.5rem">Order Details</h3>
+        <div style="overflow-x:auto">
+        <table>
+          <thead><tr><th>order_id</th><th>order_date</th><th>status</th><th>customer</th><th>email</th><th>product</th><th>category</th><th>quantity</th><th>unit_price</th><th>discount</th><th>line_total</th></tr></thead>
+          <tbody><tr><td>165</td><td>2026-02-16 17:35:01</td><td>delivered</td><td>Sandra Moore</td><td>sandra.moore185@email.com</td><td>Wireless Bluetooth Headphones</td><td>Electronics</td><td>2</td><td>89.99</td><td>0.0</td><td>179.98</td></tr><tr><td>131</td><td>2026-02-14 17:35:00</td><td>shipped</td><td>Joseph Thompson</td><td>joseph.thompson115@email.com</td><td>Resistance Band Kit</td><td>Sports</td><td>1</td><td>24.99</td><td>0.05</td><td>23.74</td></tr><tr><td>131</td><td>2026-02-14 17:35:00</td><td>shipped</td><td>Joseph Thompson</td><td>joseph.thompson115@email.com</td><td>Yoga Mat Premium</td><td>Sports</td><td>1</td><td>34.99</td><td>0.05</td><td>33.24</td></tr><tr><td>105</td><td>2026-02-12 17:34:59</td><td>cancelled</td><td>Mark Johnson</td><td>mark.johnson8@email.com</td><td>Adjustable Dumbbell Set</td><td>Sports</td><td>4</td><td>149.99</td><td>0.0</td><td>599.96</td></tr><tr><td>105</td><td>2026-02-12 17:34:59</td><td>cancelled</td><td>Mark Johnson</td><td>mark.johnson8@email.com</td><td>Mechanical Gaming Keyboard</td><td>Electronics</td><td>1</td><td>69.99</td><td>0.05</td><td>66.49</td></tr><tr><td>105</td><td>2026-02-12 17:34:59</td><td>cancelled</td><td>Mark Johnson</td><td>mark.johnson8@email.com</td><td>Noise Cancelling Earbuds</td><td>Electronics</td><td>2</td><td>129.99</td><td>0.0</td><td>259.98</td></tr><tr><td>105</td><td>2026-02-12 17:34:59</td><td>cancelled</td><td>Mark Johnson</td><td>mark.johnson8@email.com</td><td>Vitamin D3 Supplements</td><td>Health & Beauty</td><td>2</td><td>14.99</td><td>0.05</td><td>28.48</td></tr><tr><td>64</td><td>2026-02-10 17:34:57</td><td>delivered</td><td>Charles Lopez</td><td>charles.lopez172@email.com</td><td>Cotton Crew Neck T-Shirt</td><td>Clothing</td><td>2</td><td>24.99</td><td>0.0</td><td>49.98</td></tr><tr><td>300</td><td>2026-02-09 17:35:06</td><td>processing</td><td>Jennifer Johnson</td><td>jennifer.johnson105@email.com</td><td>Adjustable Dumbbell Set</td><td>Sports</td><td>4</td><td>149.99</td><td>0.05</td><td>569.96</td></tr><tr><td>300</td><td>2026-02-09 17:35:06</td><td>processing</td><td>Jennifer Johnson</td><td>jennifer.johnson105@email.com</td><td>Mechanical Gaming Keyboard</td><td>Electronics</td><td>5</td><td>69.99</td><td>0.0</td><td>349.95</td></tr><tr><td>300</td><td>2026-02-09 17:35:06</td><td>processing</td><td>Jennifer Johnson</td><td>jennifer.johnson105@email.com</td><td>Python Programming Guide</td><td>Books</td><td>3</td><td>39.99</td><td>0.0</td><td>119.97</td></tr><tr><td>417</td><td>2026-02-06 17:35:10</td><td>processing</td><td>Matthew Wilson</td><td>matthew.wilson67@email.com</td><td>Natural Face Moisturiser</td><td>Health & Beauty</td><td>5</td><td>28.99</td><td>0.05</td><td>137.7</td></tr><tr><td>417</td><td>2026-02-06 17:35:10</td><td>processing</td><td>Matthew Wilson</td><td>matthew.wilson67@email.com</td><td>Slim Fit Chino Pants</td><td>Clothing</td><td>3</td><td>49.99</td><td>0.05</td><td>142.47</td></tr><tr><td>417</td><td>2026-02-06 17:35:10</td><td>processing</td><td>Matthew Wilson</td><td>matthew.wilson67@email.com</td><td>The Art of War</td><td>Books</td><td>1</td><td>12.99</td><td>0.0</td><td>12.99</td></tr><tr><td>486</td><td>2026-02-05 17:35:13</td><td>delivered</td><td>Betty Jackson</td><td>betty.jackson121@email.com</td><td>Natural Face Moisturiser</td><td>Health & Beauty</td><td>5</td><td>28.99</td><td>0.05</td><td>137.7</td></tr><tr><td>486</td><td>2026-02-05 17:35:13</td><td>delivered</td><td>Betty Jackson</td><td>betty.jackson121@email.com</td><td>Slim Fit Chino Pants</td><td>Clothing</td><td>4</td><td>49.99</td><td>0.05</td><td>189.96</td></tr><tr><td>486</td><td>2026-02-05 17:35:13</td><td>delivered</td><td>Betty Jackson</td><td>betty.jackson121@email.com</td><td>The Art of War</td><td>Books</td><td>2</td><td>12.99</td><td>0.0</td><td>25.98</td></tr><tr><td>486</td><td>2026-02-05 17:35:13</td><td>delivered</td><td>Betty Jackson</td><td>betty.jackson121@email.com</td><td>USB-C Charging Hub 7-Port</td><td>Electronics</td><td>1</td><td>45.99</td><td>0.0</td><td>45.99</td></tr><tr><td>433</td><td>2026-02-04 17:35:11</td><td>pending</td><td>Anthony Anderson</td><td>anthony.anderson62@email.com</td><td>4K Ultra HD Smart TV 55"</td><td>Electronics</td><td>4</td><td>499.99</td><td>0.05</td><td>1899.96</td></tr><tr><td>433</td><td>2026-02-04 17:35:11</td><td>pending</td><td>Anthony Anderson</td><td>anthony.anderson62@email.com</td><td>Vitamin D3 Supplements</td><td>Health & Beauty</td><td>3</td><td>14.99</td><td>0.0</td><td>44.97</td></tr></tbody>
+        </table>
+        </div>
+        <p style='color:#8b949e;font-size:0.8rem'>Showing first 20 rows</p>
+        
+        <h3 style="color:#79c0ff;margin:1.5rem 0 0.5rem">Employee Hierarchy</h3>
+        <div style="overflow-x:auto">
+        <table>
+          <thead><tr><th>employee_id</th><th>employee</th><th>salary</th><th>department</th><th>manager</th></tr></thead>
+          <tbody><tr><td>35</td><td>Thomas Brown</td><td>90024.02</td><td>Customer Service</td><td>None</td></tr><tr><td>2</td><td>Linda Jones</td><td>48199.61</td><td>Customer Service</td><td>None</td></tr><tr><td>24</td><td>Joseph Jones</td><td>51170.43</td><td>Customer Service</td><td>None</td></tr><tr><td>44</td><td>Daniel Martinez</td><td>119611.95</td><td>Customer Service</td><td>None</td></tr><tr><td>13</td><td>Charles Miller</td><td>45564.41</td><td>Customer Service</td><td>None</td></tr><tr><td>22</td><td>John Miller</td><td>115432.78</td><td>Customer Service</td><td>None</td></tr><tr><td>23</td><td>David Miller</td><td>79938.5</td><td>Customer Service</td><td>None</td></tr><tr><td>5</td><td>James Moore</td><td>97281.57</td><td>Customer Service</td><td>None</td></tr><tr><td>17</td><td>Daniel Perez</td><td>45712.2</td><td>Customer Service</td><td>None</td></tr><tr><td>7</td><td>Margaret Smith</td><td>104465.54</td><td>Customer Service</td><td>None</td></tr><tr><td>50</td><td>Nancy Thomas</td><td>83138.71</td><td>Customer Service</td><td>None</td></tr><tr><td>33</td><td>Barbara Wilson</td><td>76297.9</td><td>Customer Service</td><td>None</td></tr><tr><td>45</td><td>Susan Anderson</td><td>81406.07</td><td>Engineering</td><td>None</td></tr><tr><td>11</td><td>Karen Brown</td><td>113783.63</td><td>Engineering</td><td>None</td></tr><tr><td>47</td><td>Karen Davis</td><td>57617.39</td><td>Engineering</td><td>None</td></tr><tr><td>39</td><td>Linda Johnson</td><td>110240.77</td><td>Engineering</td><td>None</td></tr><tr><td>48</td><td>Daniel Lee</td><td>58315.34</td><td>Engineering</td><td>None</td></tr><tr><td>14</td><td>Linda Martinez</td><td>108425.42</td><td>Engineering</td><td>None</td></tr><tr><td>3</td><td>Mark Moore</td><td>87239.4</td><td>Engineering</td><td>None</td></tr><tr><td>20</td><td>Linda Perez</td><td>107428.15</td><td>Engineering</td><td>None</td></tr></tbody>
+        </table>
+        </div>
+        <p style='color:#8b949e;font-size:0.8rem'>Showing first 20 rows</p>
+        
+        <h3 style="color:#79c0ff;margin:1.5rem 0 0.5rem">Supplier Performance</h3>
+        <div style="overflow-x:auto">
+        <table>
+          <thead><tr><th>supplier</th><th>country</th><th>rating</th><th>products_supplied</th><th>total_units_ordered</th><th>total_order_value</th></tr></thead>
+          <tbody><tr><td>HomeGoods Co</td><td>US</td><td>4.0</td><td>5</td><td>913</td><td>142281.87</td></tr><tr><td>HealthFirst</td><td>US</td><td>4.6</td><td>6</td><td>1090</td><td>82299.1</td></tr><tr><td>FoodDistrib</td><td>FR</td><td>3.9</td><td>4</td><td>774</td><td>41850.26</td></tr><tr><td>FashionWorld</td><td>UK</td><td>4.2</td><td>4</td><td>733</td><td>29483.67</td></tr><tr><td>BookSource</td><td>US</td><td>4.5</td><td>2</td><td>441</td><td>15505.59</td></tr><tr><td>TechGlobal Inc</td><td>US</td><td>4.8</td><td>2</td><td>366</td><td>12598.34</td></tr><tr><td>ToyMakers Ltd</td><td>JP</td><td>4.3</td><td>2</td><td>302</td><td>8261.98</td></tr><tr><td>SportsPro</td><td>DE</td><td>4.7</td><td>0</td><td>0</td><td>0.0</td></tr></tbody>
+        </table>
+        </div>
+        
+        
+        <h3 style="color:#79c0ff;margin:1.5rem 0 0.5rem">Revenue by Category</h3>
+        <div style="overflow-x:auto">
+        <table>
+          <thead><tr><th>category</th><th>orders</th><th>units_sold</th><th>revenue</th><th>avg_price</th></tr></thead>
+          <tbody><tr><td>Electronics</td><td>198</td><td>828</td><td>147431.06</td><td>176.9</td></tr><tr><td>Sports</td><td>158</td><td>520</td><td>37304.39</td><td>76.11</td></tr><tr><td>Clothing</td><td>157</td><td>530</td><td>34705.28</td><td>64.65</td></tr><tr><td>Books</td><td>174</td><td>611</td><td>20473.09</td><td>33.52</td></tr><tr><td>Toys</td><td>97</td><td>320</td><td>13972.85</td><td>44.25</td></tr><tr><td>Health & Beauty</td><td>147</td><td>505</td><td>10856.38</td><td>21.97</td></tr><tr><td>Home & Garden</td><td>125</td><td>414</td><td>9816.64</td><td>24.18</td></tr><tr><td>Automotive</td><td>57</td><td>185</td><td>3633.18</td><td>19.99</td></tr></tbody>
+        </table>
+        </div>
+        
+        
+        <h3 style="color:#79c0ff;margin:1.5rem 0 0.5rem">Top Customers</h3>
+        <div style="overflow-x:auto">
+        <table>
+          <thead><tr><th>customer_id</th><th>customer</th><th>city</th><th>country</th><th>total_orders</th><th>lifetime_value</th><th>avg_order_value</th><th>loyalty_points</th></tr></thead>
+          <tbody><tr><td>8</td><td>Nancy Lee</td><td>Phoenix</td><td>BR</td><td>6</td><td>5962.67</td><td>993.78</td><td>2057</td></tr><tr><td>147</td><td>Barbara White</td><td>Phoenix</td><td>BR</td><td>4</td><td>5841.7</td><td>1460.42</td><td>1217</td></tr><tr><td>49</td><td>Lisa White</td><td>Dallas</td><td>JP</td><td>4</td><td>5678.73</td><td>1419.68</td><td>4488</td></tr><tr><td>158</td><td>Sandra Hernandez</td><td>Austin</td><td>JP</td><td>5</td><td>5622.66</td><td>1124.53</td><td>2594</td></tr><tr><td>183</td><td>Thomas Rodriguez</td><td>Chicago</td><td>DE</td><td>5</td><td>5276.37</td><td>1055.27</td><td>3947</td></tr><tr><td>11</td><td>Jennifer White</td><td>San Diego</td><td>JP</td><td>6</td><td>5065.78</td><td>844.3</td><td>4594</td></tr><tr><td>145</td><td>Thomas White</td><td>Chicago</td><td>UK</td><td>2</td><td>4972.78</td><td>2486.39</td><td>2263</td></tr><tr><td>153</td><td>Nancy Lee</td><td>Chicago</td><td>BR</td><td>6</td><td>4901.85</td><td>816.98</td><td>303</td></tr><tr><td>44</td><td>Sarah Gonzalez</td><td>Houston</td><td>CA</td><td>4</td><td>4494.31</td><td>1123.58</td><td>45</td></tr><tr><td>31</td><td>Nancy Brown</td><td>Jacksonville</td><td>DE</td><td>4</td><td>4399.06</td><td>1099.76</td><td>4154</td></tr><tr><td>129</td><td>Jennifer Jackson</td><td>San Antonio</td><td>BR</td><td>4</td><td>4383.52</td><td>1095.88</td><td>747</td></tr><tr><td>97</td><td>William Martinez</td><td>Phoenix</td><td>AU</td><td>4</td><td>4282.63</td><td>1070.66</td><td>988</td></tr><tr><td>93</td><td>Joseph Smith</td><td>Los Angeles</td><td>DE</td><td>4</td><td>4275.49</td><td>1068.87</td><td>1815</td></tr><tr><td>63</td><td>Anthony Anderson</td><td>Chicago</td><td>US</td><td>3</td><td>4247.78</td><td>1415.93</td><td>3227</td></tr><tr><td>53</td><td>John Thompson</td><td>Phoenix</td><td>AU</td><td>3</td><td>3947.42</td><td>1315.81</td><td>2225</td></tr><tr><td>78</td><td>Daniel Martinez</td><td>Austin</td><td>UK</td><td>4</td><td>3739.19</td><td>934.8</td><td>4636</td></tr><tr><td>165</td><td>Jessica Jackson</td><td>Austin</td><td>CA</td><td>2</td><td>3644.75</td><td>1822.38</td><td>1392</td></tr><tr><td>139</td><td>Christopher Martin</td><td>Houston</td><td>CA</td><td>2</td><td>3565.83</td><td>1782.91</td><td>2545</td></tr><tr><td>106</td><td>Jennifer Johnson</td><td>Phoenix</td><td>BR</td><td>5</td><td>3547.99</td><td>709.6</td><td>934</td></tr><tr><td>28</td><td>Mark Jackson</td><td>Houston</td><td>DE</td><td>3</td><td>3408.7</td><td>1136.23</td><td>363</td></tr></tbody>
+        </table>
+        </div>
+        
+        
+        <h3 style="color:#79c0ff;margin:1.5rem 0 0.5rem">Monthly Revenue</h3>
+        <div style="overflow-x:auto">
+        <table>
+          <thead><tr><th>month</th><th>orders</th><th>revenue</th><th>avg_order</th></tr></thead>
+          <tbody><tr><td>2026-02</td><td>8</td><td>4340.44</td><td>542.56</td></tr><tr><td>2026-01</td><td>17</td><td>20005.77</td><td>1176.81</td></tr><tr><td>2025-12</td><td>11</td><td>3499.33</td><td>318.12</td></tr><tr><td>2025-11</td><td>25</td><td>12533.75</td><td>501.35</td></tr><tr><td>2025-10</td><td>17</td><td>7121.79</td><td>418.93</td></tr><tr><td>2025-09</td><td>18</td><td>6256.23</td><td>347.57</td></tr><tr><td>2025-08</td><td>22</td><td>9051.52</td><td>411.43</td></tr><tr><td>2025-07</td><td>18</td><td>14770.96</td><td>820.61</td></tr><tr><td>2025-06</td><td>17</td><td>13655.31</td><td>803.25</td></tr><tr><td>2025-05</td><td>19</td><td>11025.27</td><td>580.28</td></tr><tr><td>2025-04</td><td>25</td><td>14670.65</td><td>586.83</td></tr><tr><td>2025-03</td><td>15</td><td>13352.6</td><td>890.17</td></tr><tr><td>2025-02</td><td>15</td><td>14594.18</td><td>972.95</td></tr><tr><td>2025-01</td><td>19</td><td>10126.9</td><td>532.99</td></tr><tr><td>2024-12</td><td>14</td><td>8363.08</td><td>597.36</td></tr><tr><td>2024-11</td><td>14</td><td>6458.31</td><td>461.31</td></tr><tr><td>2024-10</td><td>20</td><td>16668.11</td><td>833.41</td></tr><tr><td>2024-09</td><td>22</td><td>19147.85</td><td>870.36</td></tr><tr><td>2024-08</td><td>10</td><td>4744.37</td><td>474.44</td></tr><tr><td>2024-07</td><td>22</td><td>15351.6</td><td>697.8</td></tr></tbody>
+        </table>
+        </div>
+        <p style='color:#8b949e;font-size:0.8rem'>Showing first 20 rows</p>
+        
+        <h3 style="color:#79c0ff;margin:1.5rem 0 0.5rem">Dept Salary Stats</h3>
+        <div style="overflow-x:auto">
+        <table>
+          <thead><tr><th>department</th><th>headcount</th><th>min_salary</th><th>max_salary</th><th>avg_salary</th><th>total_payroll</th><th>dept_budget</th><th>payroll_pct_budget</th></tr></thead>
+          <tbody><tr><td>Engineering</td><td>11</td><td>57617.39</td><td>113783.63</td><td>90950.34</td><td>1000453.75</td><td>850000.0</td><td>117.7</td></tr><tr><td>Customer Service</td><td>12</td><td>45564.41</td><td>119611.95</td><td>79736.47</td><td>956837.62</td><td>150000.0</td><td>637.9</td></tr><tr><td>Marketing</td><td>10</td><td>40045.75</td><td>114327.89</td><td>71476.13</td><td>714761.26</td><td>300000.0</td><td>238.3</td></tr><tr><td>Finance</td><td>6</td><td>58612.87</td><td>105281.86</td><td>84909.74</td><td>509458.45</td><td>250000.0</td><td>203.8</td></tr><tr><td>HR</td><td>6</td><td>43476.04</td><td>109794.64</td><td>81085.42</td><td>486512.54</td><td>200000.0</td><td>243.3</td></tr><tr><td>Sales</td><td>5</td><td>52227.14</td><td>117751.05</td><td>87331.29</td><td>436656.44</td><td>400000.0</td><td>109.2</td></tr></tbody>
+        </table>
+        </div>
+        
+        
+        <h3 style="color:#79c0ff;margin:1.5rem 0 0.5rem">CTE: Customer Segments</h3>
+        <div style="overflow-x:auto">
+        <table>
+          <thead><tr><th>segment</th><th>customers</th><th>avg_spend</th><th>total_revenue</th></tr></thead>
+          <tbody><tr><td>VIP</td><td>95</td><td>2511.96</td><td>238636.28</td></tr><tr><td>Gold</td><td>37</td><td>755.59</td><td>27956.73</td></tr><tr><td>Silver</td><td>37</td><td>304.37</td><td>11261.56</td></tr><tr><td>Bronze</td><td>5</td><td>67.56</td><td>337.8</td></tr><tr><td>Inactive</td><td>26</td><td>0.0</td><td>0.0</td></tr></tbody>
+        </table>
+        </div>
+        
+        
+        <h3 style="color:#79c0ff;margin:1.5rem 0 0.5rem">CTE: Product Rank by Category</h3>
+        <div style="overflow-x:auto">
+        <table>
+          <thead><tr><th>product_id</th><th>name</th><th>category</th><th>price</th><th>units_sold</th><th>revenue</th><th>rank_in_category</th></tr></thead>
+          <tbody><tr><td>25</td><td>Car Phone Mount Magnetic</td><td>Automotive</td><td>19.99</td><td>218</td><td>4357.82</td><td>1</td></tr><tr><td>10</td><td>Python Programming Guide</td><td>Books</td><td>39.99</td><td>189</td><td>7558.110000000001</td><td>1</td></tr><tr><td>11</td><td>Data Science Handbook</td><td>Books</td><td>44.99</td><td>165</td><td>7423.35</td><td>2</td></tr><tr><td>12</td><td>Clean Code</td><td>Books</td><td>34.99</td><td>197</td><td>6893.030000000001</td><td>3</td></tr><tr><td>16</td><td>Winter Parka Jacket</td><td>Clothing</td><td>129.99</td><td>211</td><td>27427.890000000003</td><td>1</td></tr><tr><td>15</td><td>Slim Fit Chino Pants</td><td>Clothing</td><td>49.99</td><td>212</td><td>10597.880000000001</td><td>2</td></tr><tr><td>14</td><td>Cotton Crew Neck T-Shirt</td><td>Clothing</td><td>24.99</td><td>211</td><td>5272.889999999999</td><td>3</td></tr><tr><td>2</td><td>4K Ultra HD Smart TV 55"</td><td>Electronics</td><td>499.99</td><td>215</td><td>107497.84999999999</td><td>1</td></tr><tr><td>5</td><td>Noise Cancelling Earbuds</td><td>Electronics</td><td>129.99</td><td>198</td><td>25738.02</td><td>2</td></tr><tr><td>3</td><td>Mechanical Gaming Keyboard</td><td>Electronics</td><td>69.99</td><td>217</td><td>15187.829999999998</td><td>3</td></tr><tr><td>22</td><td>Natural Face Moisturiser</td><td>Health & Beauty</td><td>28.99</td><td>207</td><td>6000.929999999999</td><td>1</td></tr><tr><td>20</td><td>Multivitamin Daily Pack</td><td>Health & Beauty</td><td>19.99</td><td>195</td><td>3898.0499999999997</td><td>2</td></tr><tr><td>21</td><td>Vitamin D3 Supplements</td><td>Health & Beauty</td><td>14.99</td><td>161</td><td>2413.39</td><td>3</td></tr><tr><td>18</td><td>Stainless Steel Water Bottle</td><td>Home & Garden</td><td>22.99</td><td>202</td><td>4643.98</td><td>1</td></tr><tr><td>17</td><td>Ceramic Coffee Mug Set</td><td>Home & Garden</td><td>29.99</td><td>143</td><td>4288.57</td><td>2</td></tr><tr><td>19</td><td>Bamboo Cutting Board</td><td>Home & Garden</td><td>18.99</td><td>144</td><td>2734.56</td><td>3</td></tr><tr><td>8</td><td>Adjustable Dumbbell Set</td><td>Sports</td><td>149.99</td><td>168</td><td>25198.32</td><td>1</td></tr><tr><td>6</td><td>Men's Running Shoes</td><td>Sports</td><td>79.99</td><td>186</td><td>14878.14</td><td>2</td></tr><tr><td>7</td><td>Yoga Mat Premium</td><td>Sports</td><td>34.99</td><td>134</td><td>4688.66</td><td>3</td></tr><tr><td>23</td><td>LEGO Classic Brick Box</td><td>Toys</td><td>49.99</td><td>223</td><td>11147.77</td><td>1</td></tr></tbody>
+        </table>
+        </div>
+        <p style='color:#8b949e;font-size:0.8rem'>Showing first 20 rows</p>
+        
+        <h3 style="color:#79c0ff;margin:1.5rem 0 0.5rem">CTE: Rolling 3-Month Revenue</h3>
+        <div style="overflow-x:auto">
+        <table>
+          <thead><tr><th>month</th><th>revenue</th><th>rolling_3mo_avg</th></tr></thead>
+          <tbody><tr><td>2024-02</td><td>7717.91</td><td>7717.91</td></tr><tr><td>2024-03</td><td>10641.11</td><td>9179.51</td></tr><tr><td>2024-04</td><td>10008.09</td><td>9455.7</td></tr><tr><td>2024-05</td><td>13970.04</td><td>11539.75</td></tr><tr><td>2024-06</td><td>10117.2</td><td>11365.11</td></tr><tr><td>2024-07</td><td>15351.6</td><td>13146.28</td></tr><tr><td>2024-08</td><td>4744.37</td><td>10071.06</td></tr><tr><td>2024-09</td><td>19147.85</td><td>13081.27</td></tr><tr><td>2024-10</td><td>16668.11</td><td>13520.11</td></tr><tr><td>2024-11</td><td>6458.31</td><td>14091.42</td></tr><tr><td>2024-12</td><td>8363.08</td><td>10496.5</td></tr><tr><td>2025-01</td><td>10126.9</td><td>8316.1</td></tr><tr><td>2025-02</td><td>14594.18</td><td>11028.05</td></tr><tr><td>2025-03</td><td>13352.6</td><td>12691.23</td></tr><tr><td>2025-04</td><td>14670.65</td><td>14205.81</td></tr><tr><td>2025-05</td><td>11025.27</td><td>13016.17</td></tr><tr><td>2025-06</td><td>13655.31</td><td>13117.08</td></tr><tr><td>2025-07</td><td>14770.96</td><td>13150.51</td></tr><tr><td>2025-08</td><td>9051.52</td><td>12492.6</td></tr><tr><td>2025-09</td><td>6256.23</td><td>10026.24</td></tr></tbody>
+        </table>
+        </div>
+        <p style='color:#8b949e;font-size:0.8rem'>Showing first 20 rows</p>
+        
+        <h3 style="color:#79c0ff;margin:1.5rem 0 0.5rem">Window: Employee Salary Rank</h3>
+        <div style="overflow-x:auto">
+        <table>
+          <thead><tr><th>employee</th><th>department</th><th>salary</th><th>salary_rank</th><th>dept_avg_salary</th><th>vs_dept_avg</th><th>salary_quartile</th></tr></thead>
+          <tbody><tr><td>Daniel Martinez</td><td>Customer Service</td><td>119611.95</td><td>1</td><td>79736.47</td><td>39875.48</td><td>1</td></tr><tr><td>John Miller</td><td>Customer Service</td><td>115432.78</td><td>2</td><td>79736.47</td><td>35696.31</td><td>1</td></tr><tr><td>Margaret Smith</td><td>Customer Service</td><td>104465.54</td><td>3</td><td>79736.47</td><td>24729.07</td><td>1</td></tr><tr><td>James Moore</td><td>Customer Service</td><td>97281.57</td><td>4</td><td>79736.47</td><td>17545.1</td><td>2</td></tr><tr><td>Thomas Brown</td><td>Customer Service</td><td>90024.02</td><td>5</td><td>79736.47</td><td>10287.55</td><td>2</td></tr><tr><td>Nancy Thomas</td><td>Customer Service</td><td>83138.71</td><td>6</td><td>79736.47</td><td>3402.24</td><td>3</td></tr><tr><td>David Miller</td><td>Customer Service</td><td>79938.5</td><td>7</td><td>79736.47</td><td>202.03</td><td>3</td></tr><tr><td>Barbara Wilson</td><td>Customer Service</td><td>76297.9</td><td>8</td><td>79736.47</td><td>-3438.57</td><td>3</td></tr><tr><td>Joseph Jones</td><td>Customer Service</td><td>51170.43</td><td>9</td><td>79736.47</td><td>-28566.04</td><td>4</td></tr><tr><td>Linda Jones</td><td>Customer Service</td><td>48199.61</td><td>10</td><td>79736.47</td><td>-31536.86</td><td>4</td></tr><tr><td>Daniel Perez</td><td>Customer Service</td><td>45712.2</td><td>11</td><td>79736.47</td><td>-34024.27</td><td>4</td></tr><tr><td>Charles Miller</td><td>Customer Service</td><td>45564.41</td><td>12</td><td>79736.47</td><td>-34172.06</td><td>4</td></tr><tr><td>Karen Brown</td><td>Engineering</td><td>113783.63</td><td>1</td><td>90950.34</td><td>22833.29</td><td>1</td></tr><tr><td>Linda Johnson</td><td>Engineering</td><td>110240.77</td><td>2</td><td>90950.34</td><td>19290.43</td><td>1</td></tr><tr><td>Linda Martinez</td><td>Engineering</td><td>108425.42</td><td>3</td><td>90950.34</td><td>17475.08</td><td>1</td></tr><tr><td>Linda Perez</td><td>Engineering</td><td>107428.15</td><td>4</td><td>90950.34</td><td>16477.81</td><td>1</td></tr><tr><td>Thomas Thomas</td><td>Engineering</td><td>100462.57</td><td>5</td><td>90950.34</td><td>9512.23</td><td>1</td></tr><tr><td>Matthew Rodriguez</td><td>Engineering</td><td>91276.94</td><td>6</td><td>90950.34</td><td>326.6</td><td>2</td></tr><tr><td>Mark Moore</td><td>Engineering</td><td>87239.4</td><td>7</td><td>90950.34</td><td>-3710.94</td><td>2</td></tr><tr><td>Thomas Rodriguez</td><td>Engineering</td><td>84258.07</td><td>8</td><td>90950.34</td><td>-6692.27</td><td>2</td></tr></tbody>
+        </table>
+        </div>
+        <p style='color:#8b949e;font-size:0.8rem'>Showing first 20 rows</p>
+        
+        <h3 style="color:#79c0ff;margin:1.5rem 0 0.5rem">Window: Monthly Order Trends</h3>
+        <div style="overflow-x:auto">
+        <table>
+          <thead><tr><th>month</th><th>orders</th><th>revenue</th><th>prev_month</th><th>pct_change</th></tr></thead>
+          <tbody><tr><td>2024-02</td><td>10</td><td>7717.91</td><td>None</td><td>None</td></tr><tr><td>2024-03</td><td>17</td><td>10641.11</td><td>7717.91</td><td>37.9</td></tr><tr><td>2024-04</td><td>14</td><td>10008.09</td><td>10641.11</td><td>-5.9</td></tr><tr><td>2024-05</td><td>21</td><td>13970.04</td><td>10008.09</td><td>39.6</td></tr><tr><td>2024-06</td><td>13</td><td>10117.2</td><td>13970.04</td><td>-27.6</td></tr><tr><td>2024-07</td><td>22</td><td>15351.6</td><td>10117.2</td><td>51.7</td></tr><tr><td>2024-08</td><td>10</td><td>4744.37</td><td>15351.6</td><td>-69.1</td></tr><tr><td>2024-09</td><td>22</td><td>19147.85</td><td>4744.37</td><td>303.6</td></tr><tr><td>2024-10</td><td>20</td><td>16668.11</td><td>19147.85</td><td>-13.0</td></tr><tr><td>2024-11</td><td>14</td><td>6458.31</td><td>16668.11</td><td>-61.3</td></tr><tr><td>2024-12</td><td>14</td><td>8363.08</td><td>6458.31</td><td>29.5</td></tr><tr><td>2025-01</td><td>19</td><td>10126.9</td><td>8363.08</td><td>21.1</td></tr><tr><td>2025-02</td><td>15</td><td>14594.18</td><td>10126.9</td><td>44.1</td></tr><tr><td>2025-03</td><td>15</td><td>13352.6</td><td>14594.18</td><td>-8.5</td></tr><tr><td>2025-04</td><td>25</td><td>14670.65</td><td>13352.6</td><td>9.9</td></tr><tr><td>2025-05</td><td>19</td><td>11025.27</td><td>14670.65</td><td>-24.8</td></tr><tr><td>2025-06</td><td>17</td><td>13655.31</td><td>11025.27</td><td>23.9</td></tr><tr><td>2025-07</td><td>18</td><td>14770.96</td><td>13655.31</td><td>8.2</td></tr><tr><td>2025-08</td><td>22</td><td>9051.52</td><td>14770.96</td><td>-38.7</td></tr><tr><td>2025-09</td><td>18</td><td>6256.23</td><td>9051.52</td><td>-30.9</td></tr></tbody>
+        </table>
+        </div>
+        <p style='color:#8b949e;font-size:0.8rem'>Showing first 20 rows</p>
+        
+        <h3 style="color:#79c0ff;margin:1.5rem 0 0.5rem">Window: Purchase Sequence</h3>
+        <div style="overflow-x:auto">
+        <table>
+          <thead><tr><th>customer</th><th>order_id</th><th>order_date</th><th>total_amount</th><th>purchase_number</th><th>prev_order_date</th><th>days_since_last_order</th></tr></thead>
+          <tbody><tr><td>Karen Miller</td><td>147</td><td>2024-04-24 17:35:00</td><td>404.94</td><td>1</td><td>None</td><td>None</td></tr><tr><td>Karen Miller</td><td>296</td><td>2025-01-05 17:35:06</td><td>86.41</td><td>2</td><td>2024-04-24 17:35:00</td><td>256.0</td></tr><tr><td>Ashley Lopez</td><td>121</td><td>2025-01-25 17:34:59</td><td>503.62</td><td>1</td><td>None</td><td>None</td></tr><tr><td>Barbara Garcia</td><td>191</td><td>2024-03-11 17:35:02</td><td>104.97</td><td>1</td><td>None</td><td>None</td></tr><tr><td>Barbara Garcia</td><td>163</td><td>2024-09-01 17:35:01</td><td>594.39</td><td>2</td><td>2024-03-11 17:35:02</td><td>174.0</td></tr><tr><td>Barbara Garcia</td><td>259</td><td>2024-11-19 17:35:04</td><td>93.94</td><td>3</td><td>2024-09-01 17:35:01</td><td>79.0</td></tr><tr><td>Barbara Garcia</td><td>324</td><td>2026-02-03 17:35:07</td><td>375.9</td><td>4</td><td>2024-11-19 17:35:04</td><td>441.0</td></tr><tr><td>James Perez</td><td>374</td><td>2024-08-11 17:35:09</td><td>79.96</td><td>1</td><td>None</td><td>None</td></tr><tr><td>James Perez</td><td>420</td><td>2025-11-04 17:35:10</td><td>467.9</td><td>2</td><td>2024-08-11 17:35:09</td><td>450.0</td></tr><tr><td>Mark Jones</td><td>285</td><td>2024-03-20 17:35:05</td><td>892.35</td><td>1</td><td>None</td><td>None</td></tr><tr><td>Mark Jones</td><td>72</td><td>2025-09-16 17:34:58</td><td>387.65</td><td>2</td><td>2024-03-20 17:35:05</td><td>545.0</td></tr><tr><td>Betty Moore</td><td>228</td><td>2024-12-19 17:35:03</td><td>259.29</td><td>1</td><td>None</td><td>None</td></tr><tr><td>Lisa Miller</td><td>491</td><td>2024-03-25 17:35:13</td><td>787.89</td><td>1</td><td>None</td><td>None</td></tr><tr><td>Lisa Miller</td><td>182</td><td>2026-01-19 17:35:01</td><td>1714.94</td><td>2</td><td>2024-03-25 17:35:13</td><td>665.0</td></tr><tr><td>Nancy Lee</td><td>211</td><td>2024-06-20 17:35:02</td><td>541.93</td><td>1</td><td>None</td><td>None</td></tr><tr><td>Nancy Lee</td><td>6</td><td>2024-12-09 17:34:55</td><td>519.96</td><td>2</td><td>2024-06-20 17:35:02</td><td>172.0</td></tr><tr><td>Nancy Lee</td><td>397</td><td>2025-02-24 17:35:09</td><td>818.33</td><td>3</td><td>2024-12-09 17:34:55</td><td>77.0</td></tr><tr><td>Nancy Lee</td><td>384</td><td>2025-03-09 17:35:09</td><td>2958.85</td><td>4</td><td>2025-02-24 17:35:09</td><td>13.0</td></tr><tr><td>Nancy Lee</td><td>179</td><td>2025-08-26 17:35:01</td><td>383.65</td><td>5</td><td>2025-03-09 17:35:09</td><td>170.0</td></tr><tr><td>Nancy Lee</td><td>359</td><td>2025-09-16 17:35:08</td><td>739.95</td><td>6</td><td>2025-08-26 17:35:01</td><td>21.0</td></tr></tbody>
+        </table>
+        </div>
+        <p style='color:#8b949e;font-size:0.8rem'>Showing first 20 rows</p>
+        
+        <h3 style="color:#79c0ff;margin:1.5rem 0 0.5rem">Subquery: Above Avg Products</h3>
+        <div style="overflow-x:auto">
+        <table>
+          <thead><tr><th>name</th><th>category</th><th>price</th><th>above_avg_by</th></tr></thead>
+          <tbody><tr><td>Data Science Handbook</td><td>Books</td><td>44.99</td><td>11.75</td></tr><tr><td>Python Programming Guide</td><td>Books</td><td>39.99</td><td>6.75</td></tr><tr><td>Clean Code</td><td>Books</td><td>34.99</td><td>1.75</td></tr><tr><td>Winter Parka Jacket</td><td>Clothing</td><td>129.99</td><td>61.67</td></tr><tr><td>4K Ultra HD Smart TV 55"</td><td>Electronics</td><td>499.99</td><td>332.8</td></tr><tr><td>Natural Face Moisturiser</td><td>Health & Beauty</td><td>28.99</td><td>7.67</td></tr><tr><td>Ceramic Coffee Mug Set</td><td>Home & Garden</td><td>29.99</td><td>6.0</td></tr><tr><td>Adjustable Dumbbell Set</td><td>Sports</td><td>149.99</td><td>77.5</td></tr><tr><td>Men's Running Shoes</td><td>Sports</td><td>79.99</td><td>7.5</td></tr><tr><td>LEGO Classic Brick Box</td><td>Toys</td><td>49.99</td><td>7.5</td></tr></tbody>
+        </table>
+        </div>
+        
+        
+        <h3 style="color:#79c0ff;margin:1.5rem 0 0.5rem">Subquery: Never Ordered</h3>
+        <div style="overflow-x:auto">
+        <table>
+          <thead><tr><th>customer_id</th><th>customer</th><th>email</th><th>created_at</th></tr></thead>
+          <tbody><tr><td>142</td><td>Sarah Thompson</td><td>sarah.thompson141@email.com</td><td>2026-02-19 17:34:55</td></tr><tr><td>151</td><td>Richard Davis</td><td>richard.davis150@email.com</td><td>2026-02-19 17:34:55</td></tr><tr><td>155</td><td>Sandra Anderson</td><td>sandra.anderson154@email.com</td><td>2026-02-19 17:34:55</td></tr><tr><td>174</td><td>James Perez</td><td>james.perez173@email.com</td><td>2026-02-19 17:34:55</td></tr><tr><td>178</td><td>Nancy White</td><td>nancy.white177@email.com</td><td>2026-02-19 17:34:55</td></tr><tr><td>189</td><td>Richard Lee</td><td>richard.lee188@email.com</td><td>2026-02-19 17:34:55</td></tr><tr><td>193</td><td>Mary Martinez</td><td>mary.martinez192@email.com</td><td>2026-02-19 17:34:55</td></tr><tr><td>199</td><td>Joseph Davis</td><td>joseph.davis198@email.com</td><td>2026-02-19 17:34:55</td></tr><tr><td>200</td><td>Karen Lee</td><td>karen.lee199@email.com</td><td>2026-02-19 17:34:55</td></tr><tr><td>22</td><td>Linda Smith</td><td>linda.smith21@email.com</td><td>2026-02-19 17:34:54</td></tr><tr><td>46</td><td>Margaret Thompson</td><td>margaret.thompson45@email.com</td><td>2026-02-19 17:34:54</td></tr><tr><td>51</td><td>William Davis</td><td>william.davis50@email.com</td><td>2026-02-19 17:34:54</td></tr><tr><td>70</td><td>Linda Lee</td><td>linda.lee69@email.com</td><td>2026-02-19 17:34:54</td></tr><tr><td>82</td><td>Susan Lee</td><td>susan.lee81@email.com</td><td>2026-02-19 17:34:54</td></tr><tr><td>90</td><td>Daniel Rodriguez</td><td>daniel.rodriguez89@email.com</td><td>2026-02-19 17:34:54</td></tr><tr><td>112</td><td>Jessica Martinez</td><td>jessica.martinez111@email.com</td><td>2026-02-19 17:34:54</td></tr><tr><td>12</td><td>James Brown</td><td>james.brown11@email.com</td><td>2026-02-19 17:34:53</td></tr></tbody>
+        </table>
+        </div>
+        
+        
+</div>
+</body>
+</html>

@@ -1,0 +1,6 @@
+# No external dependencies required!
+# This project uses Python standard library only:
+#   - sqlite3  (built-in)
+#   - os, sys, time, contextlib, tempfile, argparse, json, datetime, random
+#
+# Minimum Python version: 3.8+
