@@ -1,10 +1,10 @@
-# 🗄️ Database Management System
+# Database Management System
 
 A fully-featured relational database system built with SQLite demonstrating professional SQL techniques including schema design, indexing strategies, CTEs, window functions, triggers, views, and query optimisation.
 
 ---
 
-## 📐 Architecture
+## Architecture
 
 ```
 database-management/
@@ -22,12 +22,12 @@ database-management/
 ├── reports/
 │   └── report_generator.py          ← HTML report output
 └── tests/
-    └── test_database.py             ← 20 unit tests (all passing ✅)
+    └── test_database.py             ← 20 unit tests (all passing)
 ```
 
 ---
 
-## 🚀 Quick Start
+## Quick Start
 
 ```bash
 # No dependencies needed — pure Python stdlib!
@@ -42,7 +42,7 @@ explorer.exe reports/db_report_*.html
 
 ---
 
-## 🏗️ Database Schema (8 Tables)
+## Database Schema (8 Tables)
 
 | Table | Description |
 |---|---|
@@ -57,7 +57,7 @@ explorer.exe reports/db_report_*.html
 
 ---
 
-## 🔍 SQL Techniques Demonstrated
+## SQL Techniques Demonstrated
 
 ### Basic
 - Filtered SELECT with WHERE clauses
@@ -90,7 +90,7 @@ explorer.exe reports/db_report_*.html
 
 ---
 
-## ⚡ Indexing Strategy (14 Indexes)
+## Indexing Strategy (14 Indexes)
 
 | Index | Type | Purpose |
 |---|---|---|
@@ -103,7 +103,7 @@ explorer.exe reports/db_report_*.html
 
 ---
 
-## 🔁 Triggers (4)
+## Triggers (4)
 
 - `trg_order_total_on_insert` — Auto-calculates order total on item insert
 - `trg_order_total_on_update` — Recalculates on item update
@@ -112,7 +112,7 @@ explorer.exe reports/db_report_*.html
 
 ---
 
-## 👁️ Views (4)
+## Views (4)
 
 - `v_order_summary` — Order + customer + employee joined
 - `v_product_performance` — Sales, revenue, margin per product
@@ -121,7 +121,7 @@ explorer.exe reports/db_report_*.html
 
 ---
 
-## 🛠 Technologies
+## Technologies
 
 - **Language**: Python 3.10+ (zero external dependencies)
 - **Database**: SQLite 3 with WAL journal mode
