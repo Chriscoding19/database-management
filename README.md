@@ -30,7 +30,7 @@ database-management/
 ## Quick Start
 
 ```bash
-# No dependencies needed — pure Python stdlib!
+# No dependencies needed - pure Python stdlib!
 python3 main.py
 
 # Run unit tests
@@ -78,11 +78,11 @@ explorer.exe reports/db_report_*.html
 - Rolling 3-month revenue average
 
 ### Window Functions
-- `RANK()` — salary ranking within department
-- `LAG()` — month-over-month revenue change
-- `ROW_NUMBER()` — customer purchase sequence
-- `NTILE(4)` — salary quartiles
-- `AVG() OVER (PARTITION BY ...)` — dept average vs individual
+- `RANK()` - salary ranking within department
+- `LAG()` - month-over-month revenue change
+- `ROW_NUMBER()` - customer purchase sequence
+- `NTILE(4)` - salary quartiles
+- `AVG() OVER (PARTITION BY ...)` - dept average vs individual
 
 ### Subqueries
 - Correlated subqueries for above-average products
@@ -105,19 +105,19 @@ explorer.exe reports/db_report_*.html
 
 ## Triggers (4)
 
-- `trg_order_total_on_insert` — Auto-calculates order total on item insert
-- `trg_order_total_on_update` — Recalculates on item update
-- `trg_order_total_on_delete` — Recalculates on item delete
-- `trg_inventory_updated` — Stamps last_updated on stock change
+- `trg_order_total_on_insert` - Auto-calculates order total on item insert
+- `trg_order_total_on_update`  Recalculates on item update
+- `trg_order_total_on_delete` - Recalculates on item delete
+- `trg_inventory_updated` - Stamps last_updated on stock change
 
 ---
 
 ## Views (4)
 
-- `v_order_summary` — Order + customer + employee joined
-- `v_product_performance` — Sales, revenue, margin per product
-- `v_customer_stats` — Lifetime value, order count, avg spend
-- `v_low_stock` — Products below reorder level
+- `v_order_summary` - Order + customer + employee joined
+- `v_product_performance` - Sales, revenue, margin per product
+- `v_customer_stats` - Lifetime value, order count, avg spend
+- `v_low_stock` - Products below reorder level
 
 ---
 
