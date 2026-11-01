@@ -141,9 +141,9 @@ def main():
 
     elapsed = time.time() - start
     print(f"\n{'═'*65}")
-    print(f"  ✅  Complete! Total time: {elapsed:.1f}s")
-    print(f"  🗄️   Database : {args.db}")
-    print(f"  📊  Report   : reports/db_report_*.html")
+    print(f" Complete! Total time: {elapsed:.1f}s")
+    print(f"  Database : {args.db}")
+    print(f"  Report   : reports/db_report_*.html")
     print(f"{'═'*65}\n")
 
 
